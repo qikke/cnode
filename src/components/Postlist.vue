@@ -1,8 +1,8 @@
 <template>
   <ul class="postList">
     <li class="nav">
-      <ul>
-        <li><a href="#">全部</a></li>
+      <ul class="clearfix">
+        <li class="active"><a href="#">全部</a></li>
         <li><a href="#">精华</a></li>
         <li><a href="#">分享</a></li>
         <li><a href="#">回答</a></li>
@@ -61,6 +61,8 @@
           return '分享'
         } else if (post.tab === 'ask') {
           return '问答'
+        } else{
+          return '无'
         }
       },
     },
@@ -100,9 +102,10 @@
 
 <style scoped>
   .postList {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
     background: white;
+    margin-top: 15px;
   }
 
   .postList > li:not(:first-child) {
@@ -182,14 +185,23 @@
 
   .nav{
     background: #F6F6F6;
-    display: block;
   }
+
   .nav li{
     float:left;
-    color:#80bd01;
     margin:0 10px;
     font-size: 14px;
+    padding: 10px;
+  }
+  .nav li> a{
+    color:#80bd01;
+    padding:2px;
+    border-radius:3px;
+  }
 
+  .nav li.active > a{
+    background:#80bd01;
+    color:#fff;
   }
 
 </style>

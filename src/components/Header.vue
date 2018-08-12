@@ -58,9 +58,4 @@
     padding:12px 15px;
   }
 
-  .clearfix:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
 </style>
