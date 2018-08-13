@@ -19,15 +19,13 @@
           class="clickMount">{{post.visit_count}}</span>
       </span>
       <span :class="[{active:isActive(post)},'topic']">{{getTopicContent(post)}}</span>
-      <a href="#" class="titileName">{{post.title}}</a>
+      <router-link :to="{name:'post_content',params:{id:post.id}}"><a href="#" class="titileName">{{post.title}}</a></router-link>
       <a href="" class="latestComment">{{post.last_reply_at | timeTransform}}</a>
     </li>
   </ul>
 </template>
 
 <script>
-  import axios from 'axios'
-
   export default {
     name: "Postlist",
     data() {
@@ -40,7 +38,7 @@
       //获取cnode数据
       getData() {
         let _this = this
-        axios.get('https://cnodejs.org/api/v1/topics').then(response => {
+        this.$http.get('https://cnodejs.org/api/v1/topics').then(response => {
           _this.postListData = response.data.data
           console.log(_this.postListData)
         }).catch(error => {
@@ -61,7 +59,7 @@
           return '分享'
         } else if (post.tab === 'ask') {
           return '问答'
-        } else{
+        } else {
           return '无'
         }
       },
@@ -109,6 +107,7 @@
   }
 
   .postList > li:not(:first-child) {
+    position: relative;
     border-bottom: 1px solid #F0F0F0;
     padding: 10px;
     line-height: 30px;
@@ -170,8 +169,12 @@
   }
 
   .titileName {
-    display: inline-block;
-    vertical-align: middle;
+    position: absolute;
+    left:164px;
+    top:13px;
+    height: 30px;
+    max-width: 700px;
+    overflow:hidden;
   }
 
   .latestComment {
@@ -182,26 +185,26 @@
     font-size: 11px;
   }
 
-
-  .nav{
+  .nav {
     background: #F6F6F6;
   }
 
-  .nav li{
-    float:left;
-    margin:0 10px;
+  .nav li {
+    float: left;
+    margin: 0 10px;
     font-size: 14px;
     padding: 10px;
   }
-  .nav li> a{
-    color:#80bd01;
-    padding:2px;
-    border-radius:3px;
+
+  .nav li > a {
+    color: #80bd01;
+    padding: 2px;
+    border-radius: 3px;
   }
 
-  .nav li.active > a{
-    background:#80bd01;
-    color:#fff;
+  .nav li.active > a {
+    background: #80bd01;
+    color: #fff;
   }
 
 </style>

@@ -5,8 +5,10 @@ import App from './App'
 import router from './router'
 import Header from './components/Header'
 import Postlist from './components/Postlist'
+import Axios from 'axios'
 
 Vue.config.productionTip = false
+Vue.prototype.$http = Axios
 
 /* eslint-disable no-new */
 new Vue({
@@ -16,8 +18,11 @@ new Vue({
   template: `
     <div>
       <Header></Header>
-      <Postlist></Postlist>
+      <main>
+        <router-view name="main"></router-view>
+      </main>
     </div>
-    
   `
 })
+
+
