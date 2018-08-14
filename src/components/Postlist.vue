@@ -40,7 +40,6 @@
         let _this = this
         this.$http.get('https://cnodejs.org/api/v1/topics').then(response => {
           _this.postListData = response.data.data
-          console.log(_this.postListData)
         }).catch(error => {
           console.log(error)
         })
@@ -63,34 +62,6 @@
           return '无'
         }
       },
-    },
-    computed: {},
-    filters: {
-      timeTransform(value) {
-        // 2018-08-11T11:31:51.799Z
-        let reg = /^(\d+)-(\d+)-(\d+)T(\d+):(\d+)/
-        let [, commentYear, commentMouth, commentDay, commentHour, commentMinute] = value.match(reg)
-        let currentDate = new Date()
-        let currentYear = currentDate.getFullYear()
-        let currentMonth = currentDate.getMonth() + 1
-        let currentDay = currentDate.getDate()
-        let currentHour = currentDate.getHours()
-        let currentMinute = currentDate.getMinutes()
-
-        if (currentYear != commentYear) {
-          return (currentYear - commentYear) + '年前'
-        } else if (currentMonth != commentMouth) {
-          return (currentMonth - commentMouth) + '月前'
-        } else if (currentDay != commentDay) {
-          return (currentDay - commentDay) + '天前'
-        } else if (commentHour != currentHour) {
-          return (currentHour - commentHour) + '小时前'
-        } else if (commentMinute != currentMinute) {
-          return (currentHour - commentHour) + '分钟前'
-        } else {
-          return '刚刚'
-        }
-      }
     },
     mounted() {
       this.getData()
