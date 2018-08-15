@@ -10,20 +10,20 @@
           <li>• 来自{{postInfo.tab | comeFrom}}</li>
         </ul>
       </header>
-      <main v-html="postInfo.content"  id="content"></main>
+      <main v-html="postInfo.content" id="content"></main>
     </div>
     <div class="reply">
       <ul>
         <div class="reply-header">{{postInfo.replies.length}}回复</div>
         <li v-for="(comment,index) in postInfo.replies">
           <div class="author_content clearfix">
-            <a href="#"><img :src="comment.author.avatar_url" alt=""></a>
+            <a href="#"><img :src="comment.author.avatar_url" alt="" class="avatar"></a>
             <div class="user_info">
               <a href="#">{{comment.author.loginname}}</a>
               <span>{{index+1}}楼 •{{comment.create_at | timeTransform}}</span>
             </div>
           </div>
-          <div v-html="comment.content"></div>
+          <div v-html="comment.content" class="comment-content"></div>
         </li>
       </ul>
     </div>
@@ -68,7 +68,8 @@
 
 <style>
   @import "../assets/markdown-github.css";
-  .panel,.reply{
+
+  .panel, .reply {
     width: 70%;
     margin: 15px auto 0 auto;
     background: white;
@@ -86,11 +87,11 @@
     margin: 8px 0;
   }
 
-  .panel > header ul > li{
-    float:left;
+  .panel > header ul > li {
+    float: left;
     font-size: 12px;
     color: #838383;
-    display:inline-block;
+    display: inline-block;
     margin-right: 10px;
   }
 
@@ -98,44 +99,60 @@
     width: 92% !important;
   }
 
-  .reply{
-
-  }
-
-  .reply .reply-header{
+  .reply .reply-header {
     padding: 10px;
     background-color: #f6f6f6;
     border-radius: 3px 3px 0 0;
   }
 
-  .reply li{
+  .reply li {
     border-top: 1px solid #f0f0f0;
     padding: 10px;
     margin-bottom: 10px;
   }
-  .author_content>a,.user_info{
-    float:left;
+
+  .author_content > a, .user_info {
+    float: left;
   }
 
-  .user_info{
+  .user_info {
     font-size: 14px;
     margin-left: 10px;
   }
 
-  .user_info>a{
+  .user_info > a {
     color: #666;
     text-overflow: ellipsis;
     font-size: 12px;
     font-weight: 700;
   }
 
-  .user_info>span{
-    font-family: "Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB",STHeiti,sans-serif!important;
+  .user_info > span {
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, sans-serif !important;
     word-break: break-word;
   }
-  .author_content img{
-    width:30px;
-    height:30px;
+
+  .reply .comment-content {
+    margin-top: 5px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .reply .comment-content img {
+    max-width: 30%;
+  }
+
+  .reply .avatar {
+    width: 30px;
+    height: 30px;
+  }
+
+  #content img {
+    height: auto;
+    max-width: 30%;
+    vertical-align: middle;
+    border: 0;
+    cursor: pointer;
   }
 
 </style>

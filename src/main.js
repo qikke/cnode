@@ -6,6 +6,8 @@ import router from './router'
 import Header from './components/Header'
 import Postlist from './components/Postlist'
 import Axios from 'axios'
+import Post from './components/Post'
+
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
@@ -41,7 +43,7 @@ Vue.filter('timeTransform', function (value) {
 new Vue({
   el: '#app',
   router,
-  components: {App, Header, Postlist},
+  components: {App, Header, Postlist,Post},
   template: `
     <div>
       <Header></Header>

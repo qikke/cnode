@@ -11,27 +11,22 @@
       </ul>
     </li>
     <li v-for="post in postListData">
-      <a href="#" class="authorImg">
-        <img :src="post.author.avatar_url">
-      </a>
-      <span class="comment">
-        <span class="replyMount">{{post.reply_count}}</span><span class="count_seperator">/</span><span
-          class="clickMount">{{post.visit_count}}</span>
-      </span>
-      <span :class="[{active:isActive(post)},'topic']">{{getTopicContent(post)}}</span>
-      <router-link :to="{name:'post_content',params:{id:post.id}}"><a href="#" class="titileName">{{post.title}}</a></router-link>
-      <a href="" class="latestComment">{{post.last_reply_at | timeTransform}}</a>
+     <Post :post = "post"></Post>
     </li>
   </ul>
 </template>
 
 <script>
+  import Post from '../components/Post'
   export default {
     name: "Postlist",
+    components:{
+      Post,
+    },
     data() {
       return {
         postListData: '',
-        activeClass: ['top', 'good'],
+
       }
     },
     methods: {
@@ -44,24 +39,8 @@
           console.log(error)
         })
       },
-      isActive(post) {
-        return this.activeClass.reduce((prev, curr) => {
-          return prev || post[curr]
-        }, false)
-      },
-      getTopicContent(post) {
-        if (post.top) {
-          return '置顶'
-        } else if (post.good) {
-          return '精华'
-        } else if (post.tab === 'share') {
-          return '分享'
-        } else if (post.tab === 'ask') {
-          return '问答'
-        } else {
-          return '无'
-        }
-      },
+
+
     },
     mounted() {
       this.getData()
@@ -72,88 +51,8 @@
 <style scoped>
   .postList {
     width: 60%;
-    margin: 0 auto;
+    margin: 15px auto 0 auto;
     background: white;
-    margin-top: 15px;
-  }
-
-  .postList > li:not(:first-child) {
-    position: relative;
-    border-bottom: 1px solid #F0F0F0;
-    padding: 10px;
-    line-height: 30px;
-    display: block;
-  }
-
-  .postList > li:not(:first-child):after {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-
-  .postList > li:not(:first-child):hover {
-    background: #F6F6F6;
-  }
-
-  .authorImg > img {
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  .comment {
-    display: inline-block;
-    vertical-align: middle;
-    width: 70px;
-    text-align: center;
-  }
-
-  .count_seperator {
-    color: #333;
-    font-size: 12px;
-  }
-
-  .replyMount {
-    color: #9e78c0;
-    font-size: 14px;
-  }
-
-  .clickMount {
-    font-size: 12px;
-    color: #b4b4b4;
-
-  }
-
-  .topic {
-    padding: 2px 4px;
-    vertical-align: middle;
-    background: #E5E5E5;
-    color: #fff;
-    font-size: 12px;
-    border-radius: 3px;
-  }
-
-  .topic.active {
-    background: #80bd01;
-  }
-
-  .titileName {
-    position: absolute;
-    left:164px;
-    top:13px;
-    height: 30px;
-    max-width: 700px;
-    overflow:hidden;
-  }
-
-  .latestComment {
-    display: inline-block;
-    vertical-align: middle;
-    float: right;
-    color: #778087;
-    font-size: 11px;
   }
 
   .nav {
@@ -167,13 +66,13 @@
     padding: 10px;
   }
 
-  .nav li > a {
+  .nav li  a {
     color: #80bd01;
     padding: 2px;
     border-radius: 3px;
   }
 
-  .nav li.active > a {
+  .nav li.active  a {
     background: #80bd01;
     color: #fff;
   }

@@ -9,10 +9,14 @@
     color: #333;
     overflow: hidden;
     font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-    font-size: 22px;
+    font-size: 15px;
     line-height: 1.6;
     word-wrap: break-word;
     padding:20px;
+}
+
+#content p{
+  line-height: 1.7em;
 }
 
 #content a {
@@ -345,6 +349,7 @@
 
 #content li>p {
     margin-top: 16px;
+
 }
 
 #content dl {
@@ -406,7 +411,6 @@
 }
 
 #content img {
-    max-width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -447,7 +451,7 @@
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: black;
+    background-color: #f7f7f7;
     border-radius: 3px;
 }
 
